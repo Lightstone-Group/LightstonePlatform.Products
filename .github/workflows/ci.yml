@@ -43,6 +43,7 @@ jobs:
           path: ~/output/nuget/
   publish:
     name: Publish Nuget package
+    needs: build
     environment: Nuget
     runs-on: ubuntu-latest
     steps:
