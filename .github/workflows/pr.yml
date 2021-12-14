@@ -21,7 +21,7 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
-        languages: ${{ matrix.language }}
+        languages: csharp
     - name: Restore dependencies
       run: |
           cd src
