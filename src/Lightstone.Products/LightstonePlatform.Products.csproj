@@ -11,7 +11,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://lightstone-group.github.io/Product.Library.DotNet</PackageProjectUrl>
-    <PackageId>za.co.$(AssemblyName)</PackageId>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

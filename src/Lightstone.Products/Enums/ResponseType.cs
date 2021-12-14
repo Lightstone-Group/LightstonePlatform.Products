@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lightstone.Products.Enums
+namespace LightstonePlatform.Products.Enums
 {
     public enum ResponseType
     {

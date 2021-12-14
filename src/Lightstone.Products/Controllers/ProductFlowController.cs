@@ -1,9 +1,9 @@
-﻿using Lightstone.Products.Models;
+﻿using LightstonePlatform.Products.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lightstone.Products.Controllers
+namespace LightstonePlatform.Products.Controllers
 {
     public abstract class ProductFlowController : ProductFlowController<object>
     {
