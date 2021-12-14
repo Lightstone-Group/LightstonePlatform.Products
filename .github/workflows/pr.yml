@@ -1,26 +1,32 @@
-# For most projects, this workflow file will not need changing; you simply need
-# to commit it to your repository.
-#
-# You may wish to alter this file to override the set of languages analyzed,
-# or to provide custom queries or build logic.
-#
-# ******** NOTE ********
-# We have attempted to detect the languages in your repository. Please check
-# the `language` matrix defined below to confirm you have the correct set of
-# supported CodeQL languages.
-#
-name: "CodeQL"
+name: PR
 
 on:
   push:
     branches: [ main ]
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: [ main ]
-  schedule:
-    - cron: '26 7 * * 0'
 
 jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x     
+    - name: Restore dependencies
+      run: |
+          cd lib/Lightstone.Products/Lightstone.Products
+          dotnet restore
+    - name: Build
+      run: |
+          cd lib/Lightstone.Products/Lightstone.Products
+          dotnet build --no-restore
+#    - name: Test
+#      run: dotnet test --no-build --verbosity normal
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
