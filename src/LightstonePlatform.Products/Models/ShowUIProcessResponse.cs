@@ -1,7 +1,7 @@
-﻿using Lightstone.Products.Enums;
+﻿using LightstonePlatform.Products.Enums;
 using System.Collections.Generic;
 
-namespace Lightstone.Products.Models
+namespace LightstonePlatform.Products.Models
 {
     public class ShowUIProcessResponse : ProcessResponse
     {

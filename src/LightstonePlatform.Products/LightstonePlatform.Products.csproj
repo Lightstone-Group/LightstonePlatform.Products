@@ -7,10 +7,11 @@
     <Company>Lightstone</Company>
     <RepositoryUrl>https://github.com/Lightstone-Group/Product.Library.DotNet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>Lightston</PackageTags>
+    <PackageTags>Lightstone</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://lightstone-group.github.io/Product.Library.DotNet</PackageProjectUrl>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

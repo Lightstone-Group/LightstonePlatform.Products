@@ -1,6 +1,6 @@
-﻿using Lightstone.Products.Enums;
+﻿using LightstonePlatform.Products.Enums;
 
-namespace Lightstone.Products.Models
+namespace LightstonePlatform.Products.Models
 {
     public class ContinueStartResponse : StartResponse
     {

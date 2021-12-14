@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Lightstone.Products.Models
+namespace LightstonePlatform.Products.Models
 {
     public class UIMetaData
     {
