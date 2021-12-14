@@ -71,9 +71,7 @@ jobs:
             cd src
             dotnet build --no-restore /p:UseSharedCompilation=false 
       - name: Pack
-        run: |
-            cd src
-            dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{ steps.gitversion.outputs.legacySemVer }} --no-build -c Release src/Lightstone.Products/Lightstone.Products.csproj -o "../output/nuget"
+        run: dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{ steps.gitversion.outputs.legacySemVer }} --no-build -c Release src/Lightstone.Products/Lightstone.Products.csproj -o "../output/nuget"
 
       # Publish
       - name: Publish Nuget prerelease package
