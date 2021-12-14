@@ -57,6 +57,7 @@ jobs:
   githubrelease:
     name: Github Release
     needs: publish
+    environment: github
     runs-on: ubuntu-latest
     steps:
       - name: Create Release
