@@ -31,12 +31,8 @@ jobs:
         run: |
             cd src
             dotnet restore
-      - name: Build
-        run: |
-            cd src
-            dotnet build --no-restore --configuration Release /p:UseSharedCompilation=false /p:SymbolPackageFormat=snupkg /p:PackageVersion=${{ env.GITVERSION_NUGETVERSION }}
       - name: Pack
-        run: dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{ env.GITVERSION_NUGETVERSION }} --no-build -c Release src/Lightstone.Products/Lightstone.Products.csproj -o "../output/nuget"
+        run: dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{ env.GITVERSION_NUGETVERSION }} -c Release src/Lightstone.Products/Lightstone.Products.csproj -o "../output/nuget"
 
       # Publish
       - name: Publish Nuget prerelease package
