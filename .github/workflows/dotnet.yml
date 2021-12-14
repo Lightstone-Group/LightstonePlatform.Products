@@ -16,12 +16,10 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
-    - name: Change to correct directory
-      run: cd lib/Lightstone.Products
+        dotnet-version: 6.0.x     
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./lib/Lightstone.Products/Lightstone.Products.csproj
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore ./lib/Lightstone.Products/Lightstone.Products.csproj
     - name: Test
       run: dotnet test --no-build --verbosity normal
