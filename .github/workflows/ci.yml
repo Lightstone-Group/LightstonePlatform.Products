@@ -41,4 +41,4 @@ jobs:
       # Publish
       - name: Publish Nuget prerelease package
         id: publish_nuget
-        run: dotnet nuget push ../output/nuget/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_KEY}} --skip-duplicate
+        run: dotnet nuget push ../output/nuget/*.${{ env.GITVERSION_NUGETVERSION }}.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_KEY}} --skip-duplicate
