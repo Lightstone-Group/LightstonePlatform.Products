@@ -37,8 +37,8 @@ jobs:
             dotnet build --no-restore --configuration Release /p:UseSharedCompilation=false /p:SymbolPackageFormat=snupkg /p:PackageVersion=${{ env.GITVERSION_NUGETVERSION }}
       - name: Pack
         run: dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{ env.GITVERSION_NUGETVERSION }} --no-build -c Release src/Lightstone.Products/Lightstone.Products.csproj -o "../output/nuget"
-
-      # Publish
-      - name: Publish Nuget prerelease package
-        id: publish_nuget
-        run: dotnet nuget push ../output/nuget/*.${{ env.GITVERSION_NUGETVERSION }}.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_KEY}} --skip-duplicate
+      - name: Publish Nuget Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: nuget
+          path: output/nuget"        
