@@ -69,7 +69,7 @@ jobs:
       - name: Build
         run: |
             cd src
-            dotnet build --no-restore /p:UseSharedCompilation=false 
+            dotnet build --no-restore --configuration Release /p:UseSharedCompilation=false 
       - name: Pack
         run: dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{ steps.gitversion.outputs.legacySemVer }} --no-build -c Release src/Lightstone.Products/Lightstone.Products.csproj -o "../output/nuget"
 
