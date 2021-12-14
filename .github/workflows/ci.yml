@@ -1,7 +1,7 @@
 name: PR
 
 on:
-  pull_request:
+  push:
     branches: [ main ]
 
 jobs:
@@ -27,10 +27,15 @@ jobs:
     - name: Build
       run: |
           cd src
-          dotnet build --no-restore /p:UseSharedCompilation=false 
+          dotnet build --no-restore /p:UseSharedCompilation=false --output ../output/dotnet
     - name: Test
       run: |
           cd src
           dotnet test --no-build --verbosity normal
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
+    - name: Publish dotnet artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: dotnet
+        path: output/dotnet
