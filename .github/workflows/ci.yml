@@ -68,4 +68,5 @@ jobs:
           tag_name: ${{ env.GITVERSION_NUGETVERSION }}
           release_name: Release ${{ env.GITVERSION_NUGETVERSION }}
           draft: false
-          prerelease: false            
+          prerelease: false       
+               
