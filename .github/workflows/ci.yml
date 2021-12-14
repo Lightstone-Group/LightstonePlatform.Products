@@ -7,13 +7,15 @@ on:
 jobs:
   publish:
     name: build, pack & publish
+    environment: Nuget
     runs-on: ubuntu-latest
     steps:
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.11
         with:
           versionSpec: '5.x'
-      - uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - name: Determine version
@@ -61,7 +63,7 @@ jobs:
           dotnet-version: 6.x
 
       # Publish
-      - name: publish on version change
+      - name: Publish Nuget prerelease package
         id: publish_nuget
         uses: rohith/publish-nuget@v2
         with:
