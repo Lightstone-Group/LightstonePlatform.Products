@@ -41,6 +41,16 @@ jobs:
         with:
           name: nuget
           path: ~/output/nuget/
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.GITVERSION_NUGETVERSION }}
+          release_name: Release ${{ env.GITVERSION_NUGETVERSION }}
+          draft: false
+          prerelease: false
   publish:
     name: Publish Nuget package
     needs: build
@@ -54,19 +64,4 @@ jobs:
           path: ~/output/nuget/
       - name: Push nuget package
         run: dotnet nuget push ~/output/nuget/*.nupkg -k ${{secrets.NUGET_KEY}} -s https://api.nuget.org/v3/index.json
-  githubrelease:
-    name: Github Release
-    needs: publish
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ env.GITVERSION_NUGETVERSION }}
-          release_name: Release ${{ env.GITVERSION_NUGETVERSION }}
-          draft: false
-          prerelease: false       
-               
+    
