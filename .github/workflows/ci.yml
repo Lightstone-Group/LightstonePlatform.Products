@@ -1,41 +1,44 @@
-name: PR
+name: CI
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build:
-    name: Build
+  publish:
+    name: Build, pack and publish Nuget package
+    environment: Nuget
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.x     
-    # Initializes the CodeQL tools for scanning.
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
-      with:
-        languages: csharp
-    - name: Restore dependencies
-      run: |
-          cd src
-          dotnet restore
-    - name: Build
-      run: |
-          cd src
-          dotnet build --no-restore /p:UseSharedCompilation=false --output ../output/dotnet
-    - name: Test
-      run: |
-          cd src
-          dotnet test --no-build --verbosity normal
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
-    - name: Publish dotnet artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: dotnet
-        path: output/dotnet
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.11
+        with:
+          versionSpec: '5.x'
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Determine version
+        uses: gittools/actions/gitversion/execute@v0.9.11
+        id: gitversion
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.x
+
+      - name: Restore dependencies
+        run: |
+            cd src
+            dotnet restore
+      - name: Build
+        run: |
+            cd src
+            dotnet build --no-restore --configuration Release /p:UseSharedCompilation=false 
+      - name: Pack
+        run: dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{ env.GITVERSION_NUGETVERSION }} --no-build -c Release src/Lightstone.Products/Lightstone.Products.csproj -o "../output/nuget"
+
+      # Publish
+      - name: Publish Nuget prerelease package
+        id: publish_nuget
+        run: dotnet nuget push ../output/nuget/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_KEY}} --skip-duplicate
