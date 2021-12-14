@@ -22,7 +22,6 @@ jobs:
       uses: github/codeql-action/init@v1
       with:
         languages: csharp
-        config-file: ./.github/codeql/codeql-config.yml        
     - name: Restore dependencies
       run: |
           cd src
@@ -30,7 +29,7 @@ jobs:
     - name: Build
       run: |
           cd src
-          dotnet build --no-restore
+          dotnet build --no-restore /p:UseSharedCompilation=false 
     - name: Test
       run: |
           cd src
