@@ -57,7 +57,7 @@ If you require user input before you can successfully produce your end product y
 ```
 ### Validate Inputs
 
-When the user has completed the inputs from a ```ShowUIStartResponse``` the inputs will be posted to the Validate Inputs end-point, the inputs should be validated and a relevant response be returned, if the validation fails platform will display the inputs screen again for the user to complete.
+When the user has completed the inputs from a ```ShowUIStartResponse```, the inputs will be posted to the Validate Inputs end-point. The inputs should be validated and a relevant response be returned. If the validation fails, the platform will display the inputs screen again for the user to complete.
 
 #### Sample
 
