@@ -9,7 +9,7 @@ The Lightstone Platform comprises of a product flow that always follows the same
 When a tenant on the platform initiates a new product flow, the flow goes through various steps to determine what should be displayed to the user. The flow is made up of the following steps:
 
 - Initiation
-    - The tenant is responsible for initiating the start request to platform, this request is used by all tenants on platform to be able to surface a product through platform.
+    - The tenant is responsible for initiating the start request to the platform. This request is used by all tenants on platform to be able to surface a product through platform.
 - Legal
     - Platform gets the data from the product catalogue for the product that was specified when initiating the flow and determines if there is any legal requirements for this flow to proceed and will automatically get any inputs from the user if required.
 - Start
