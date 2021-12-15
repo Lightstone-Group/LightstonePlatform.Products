@@ -31,7 +31,7 @@ The start end-point is where everything starts. This end-point is what allows th
 
 #### Samples:
 
-If your product requires no inputs from the end user, your response needs to be a ```ContinueStartResponse``` which indcated to platform to continue with the product flow without having to wait for user input.
+If your product requires no inputs from the end user, then your response needs to be a ```ContinueStartResponse``` which indicates to the platform to continue with the product flow without having to wait for user input.
 
 ``` C#
     public async override Task<ActionResult<StartResponse>> Start([FromBody] ProductFlowInstanceStartModel input)
