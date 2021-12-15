@@ -21,7 +21,7 @@ When a tenant on the platform initiates a new product flow, the flow goes throug
 - Payment
     - Upon quote acceptance, the platform uses the payment method specified by the quote to collect funds from the end user, either through debit order or credit card payment.
 - Process
-    - Once the above steps complete successfully platform will call your product on the Process end-point which will then result in surfacing of the final purchased product.
+    - Once the above steps complete successfully, the platform will call your product on the Process end-point which will then result in surfacing of the final purchased product, in the form of a web component.
 ## Product API Implementation
 
 Your product needs to implement the following based end-points to be compatible with platform, each end-point has pre-defined expected responses that needs to be returned and this library enables you to quickly get your product up and running.
