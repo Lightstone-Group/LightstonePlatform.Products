@@ -11,7 +11,7 @@ When a tenant on the platform initiates a new product flow, the flow goes throug
 - Initiation
     - The tenant is responsible for initiating the start request to the platform. This request is used by all tenants on platform to be able to surface a product through platform.
 - Legal
-    - Platform gets the data from the product catalogue for the product that was specified when initiating the flow and determines if there is any legal requirements for this flow to proceed and will automatically get any inputs from the user if required.
+    - The platform gets the data from the product catalogue for the product that was specified when initiating the flow and determines if there is any legal requirements for this flow to proceed and will automatically get any inputs from the user if required.
 - Start
     - This is the first time that platform will need to communicate with your new product, platform will do an API request to your product based on the configured base url for your product by calling the Start end-point.  Your product will return a relevant response as per the steps below.
 - Verify Inputs
