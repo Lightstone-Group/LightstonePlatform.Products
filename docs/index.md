@@ -120,4 +120,4 @@ Please see the [samples project](https://github.com/Lightstone-Group/Product.Sam
 
 ## Micro Front End
 
-Your product also needs to contain Micro Front Ends which are custom web components that the platform will render on the tenant based on the responses from your product API.
+Your product also needs to contain Micro Front Ends which are custom web components.  The platform will render these on the tenant-side based on the responses from your product API.
