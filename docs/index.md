@@ -27,7 +27,7 @@ When a tenant on the platform initiates a new product flow, the flow goes throug
 Your product needs to implement the following based end-points to be compatible with the platform. Each end-point has pre-defined expected responses that needs to be returned and this library enables you to quickly get your product up and running.
 ### Start
 
-The start end-point is where everything begins, this end-point is what allows platform to initialize your product, Platform expects one of two responses ``` ShowUIStartResponse ``` or ``` ContinueStartResponse ```
+The start end-point is where everything starts. This end-point is what allows the platform to initialize your product, The platform expects one of two responses ``` ShowUIStartResponse ``` or ``` ContinueStartResponse ```
 
 #### Samples:
 
