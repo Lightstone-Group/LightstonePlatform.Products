@@ -73,7 +73,7 @@ When the user has completed the inputs from a ```ShowUIStartResponse```, the inp
 ```
 ### Process
 
-After successfully completing all steps platform will call the Process end-point on your product API, this end-point will then return either a ```ContinueProcessResponse``` or a ```ShowUIProcessResponse``` based on the data posted to the Process end-point
+After successfully completing all steps , the platform will call the Process end-point on your product API. This end-point must then return either a ```ContinueProcessResponse``` or a ```ShowUIProcessResponse``` based on the data posted to the Process end-point.
 
 #### Samples
 
