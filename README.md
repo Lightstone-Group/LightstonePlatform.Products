@@ -12,6 +12,9 @@ PM> Install-Package LightstonePlatform.Products -Version 0.1.5
 
 ## Sample Usage
 
+A sample Hello World product is available [here](https://github.com/Lightstone-Group/Product.Sample.AspDotNet)
+
+Below you can see the essential parts of the implementation.
 ``` C#
     [ApiController]
     [Route("[controller]")]
