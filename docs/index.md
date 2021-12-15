@@ -15,7 +15,7 @@ When a tenant on the platform initiates a new product flow, the flow goes throug
 - Start
     - This is the first time that the platform will need to communicate with your new product. The platform will do an API request to your product based on the configured base url for your product by calling the Start end-point.  Your product needs to return a relevant response as per the steps below.
 - Verify Inputs
-    - If the response in the start end-point indicated that inputs was required from the user, platform will surface your web component to the user, it will then collect that data from the user and send that data back to your product using the Verify Inputs end-point, your product will then determine if the input received is valid and if the flow can proceed
+    - If the response in the start end-point indicated that inputs were required from the user, the platform will surface your web component to the user. It will then collect that data from the user and send that data back to your product using the Verify Inputs end-point. Your product will then determine if the input received is valid and if the flow can proceed
 - Quoting
     - Platform will then generate a quote for the product, if the user is on a contract and usage of the product is allowed based on the contract configuration the flow will continue, if not the quote will be displayed to the user on the tenant for input
 - Payment
