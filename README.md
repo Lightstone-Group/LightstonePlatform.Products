@@ -7,7 +7,7 @@ Lightstone Platform Products is a library intended to allow for the surfacing of
 ## Install Lightstone Platform Products via NuGet
 
 ```
-PM> Install-Package LightstonePlatform.Products -Version 0.1.5
+PM> Install-Package LightstonePlatform.Products
 ```
 
 ## Sample Usage
