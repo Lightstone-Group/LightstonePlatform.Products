@@ -13,7 +13,7 @@ When a tenant on the platform initiates a new product flow, the flow goes throug
 - Legal
     - The platform gets the data from the product catalogue for the product that was specified when initiating the flow and determines if there is any legal requirements for this flow to proceed and will automatically get any inputs from the user if required.
 - Start
-    - This is the first time that platform will need to communicate with your new product, platform will do an API request to your product based on the configured base url for your product by calling the Start end-point.  Your product will return a relevant response as per the steps below.
+    - This is the first time that the platform will need to communicate with your new product. The platform will do an API request to your product based on the configured base url for your product by calling the Start end-point.  Your product needs to return a relevant response as per the steps below.
 - Verify Inputs
     - If the response in the start end-point indicated that inputs was required from the user, platform will surface your web component to the user, it will then collect that data from the user and send that data back to your product using the Verify Inputs end-point, your product will then determine if the input received is valid and if the flow can proceed
 - Quoting
