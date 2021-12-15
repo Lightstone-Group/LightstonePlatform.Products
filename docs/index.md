@@ -19,7 +19,7 @@ When a tenant on the platform initiates a new product flow, the flow goes throug
 - Quoting
     - Platform will then generate a quote for the product. If the user is on a contract and usage of the product is allowed based on the contract configuration, the flow will continue. if not, the quote will be displayed to the user on the tenant for input.
 - Payment
-    - Upon quote acceptance platform uses the payment method specified by the quote to collect funds from the end user, either through debit order or credit card payment.
+    - Upon quote acceptance, the platform uses the payment method specified by the quote to collect funds from the end user, either through debit order or credit card payment.
 - Process
     - Once the above steps complete successfully platform will call your product on the Process end-point which will then result in surfacing of the final purchased product.
 ## Product API Implementation
