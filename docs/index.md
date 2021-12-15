@@ -43,7 +43,7 @@ If your product requires no inputs from the end user, your response needs to be 
     }
 ```
 
-If you require user input before you can successfully produce your end product you need to return a ```ShowUIStartResponse``` this response needs to contain a URL for a Web Component to be rendered in the tenant to collect user input, and the element name for the custom web component to be rendered.
+If you require user input before you can successfully produce your end product, you need to return a ```ShowUIStartResponse```. This response needs to contain a URL for a Web Component to be rendered in the tenant to collect user input, and the element name for the custom web component to be rendered.
 
 ``` C#
     public async override Task<ActionResult<StartResponse>> Start([FromBody] ProductFlowInstanceStartModel input)
