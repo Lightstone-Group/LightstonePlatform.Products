@@ -104,7 +104,7 @@ Please see the [samples project](https://github.com/Lightstone-Group/Product.Sam
 - Body
     - The body property of the Show UI Responses contains a JSON string for data that needs to be passed back to your custom web component
 - Attributes
-    - The attributes property of the SHOW UI Responses is a dictionary of key value pairs that will be set as attributes for your custom web component
+    - The attributes property of the ShowUI Responses is a dictionary of key value pairs that will be set as attributes for your custom web component
     - Ex result: 
     ``` C#
         return new ShowUIProcessResponse
