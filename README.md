@@ -2,7 +2,7 @@
 [![NuGet Badge](https://img.shields.io/nuget/v/LightstonePlatform.Products)](https://www.nuget.org/packages/LightstonePlatform.Products/)
 # Getting Started
 
-Lightstone Platform Products is a library intended to allow for the surfacing of your products on the Lightstone platform, this package provides you with the required .Net classes to be able to respond to platform requests.
+Lightstone Platform Products is a library intended to allow for the surfacing of your products on the Lightstone platform. This package provides you with the required .Net classes to be able to respond to platform requests.
 
 ## Install Lightstone Platform Products via NuGet
 
