@@ -118,6 +118,36 @@ Please see the [samples project](https://github.com/Lightstone-Group/Product.Sam
     <custom-component custom-attr="value"></custom-component> 
     ```
 
-## Micro Front End
+## Micro Front Ends
 
 Your product also needs to contain Micro Front Ends which are custom web components.  The platform will render these on the tenant-side based on the responses from your product API.
+
+### Inputs Micro Front End
+
+The inputs micro front end is used to gather additional information from your user, and can consist internally of many pages and have it's own web services to render content and increase the user experience by making use of Ajax.
+
+The micro front end properties will be populated by the API using the attributes property as per the above examples of API response types. The body of the custom web component will also be used to pass in complex data objects as a JSON string.
+
+The input micro front end has to raise a custom event to notify the product flow that it has completed it's process which will allow the product flow to continue and pass the data back to your API implementation's Process end point.
+
+``` javascript
+
+let inputComplete = new CustomEvent('capability-input-complete', {
+    detail: {
+        data: {}
+    },
+        bubbles: true,
+        composed: true
+    });
+
+this.dispatchEvent(inputComplete);
+
+```
+
+### Product Micro Front End
+
+The final step in the product flow calls the Process end point of your API and passes the input data to your API if you required input data.
+
+Your API can then set various attributes and complex data as the body of your custom web component, which will allow you to render the final product to the client.
+
+Please see the [samples project](https://github.com/Lightstone-Group/Product.Sample.AspDotNet) for a sample implementation using LitElement.
