@@ -4,5 +4,6 @@
     {
         public ProductFlowInstanceInput<TData> Input { get; set; }
         public string CallbackUrlForDataUpdates { get; set; }
+        public string ProcessFailureRefundUrl { get; set; }
     }
 }
