@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LightstonePlatform.Products.Models
 {
-    public class UI
+    public class UI : UiBase
     {
 
         public UI()
@@ -18,9 +18,6 @@ namespace LightstonePlatform.Products.Models
             AddToHistory = addToHistory;
         }
 
-        public string ElementUrl { get; set; }
-        public string ElementName { get; set; }
-        public Dictionary<string, string> Attributes { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
         public bool AddToHistory { get; set; }
     }
