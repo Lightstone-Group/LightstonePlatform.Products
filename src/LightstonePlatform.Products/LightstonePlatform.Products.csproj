@@ -16,10 +16,6 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Core" Version="1.25.0" />
-    <PackageReference Include="Legal.Models" Version="1.1.4-19" />
-    <PackageReference Include="Lightstone.Capabilities.CollectFunds.Dto" Version="1.8.17" />
-    <PackageReference Include="Lightstone.Legal.Models" Version="1.1.3" />
-    <PackageReference Include="Lightstone.Quote.Shared" Version="1.10.9" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
   </ItemGroup>
 

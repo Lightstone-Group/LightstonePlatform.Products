@@ -1,6 +1,6 @@
 ﻿namespace LightstonePlatform.Products.Models
 {
-    public class ProductFlowInstanceStartModel : ProductFlowInstanceBase
+    public class ProductFlowInstanceStart : ProductFlowInstanceBase
     {
     }
 }
