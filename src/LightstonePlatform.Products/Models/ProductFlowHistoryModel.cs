@@ -4,7 +4,7 @@ using System;
 
 namespace LightstonePlatform.Products.Models
 {
-    public class ProductFlowHistoryModel
+    public class ProductFlowHistory
     {
         [JsonProperty("id")]
         public string ProductFlowId { get; set; }
