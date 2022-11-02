@@ -1,6 +1,6 @@
 ﻿namespace LightstonePlatform.Products.Models
 {
-    public class ProductFlowInstanceInput<TData>: ProductFlowInstanceModelBase
+    public class ProductFlowInstanceInput<TData>: ProductFlowInstanceBase
     {
 
         public ProductFlowInstanceInput()

@@ -13,13 +13,13 @@ namespace LightstonePlatform.Products.Controllers
     {
         [HttpPost]
         [Route("start")]
-        public abstract Task<ActionResult<StartResponse>> Start([FromBody] ProductFlowInstanceStartModel input);
+        public abstract Task<ActionResult<StartResponse>> Start([FromBody] ProductFlowInstanceStart input);
         [HttpPost]
         [Route("inputs/validate")]
         public abstract Task<ActionResult<ValidateInputResponse>> ValidateInputs([FromBody] ProductFlowInstanceInput<TData> input);
         [HttpPost]
         [Route("process")]
-        public abstract Task<ActionResult<ProcessResponse>> Process([FromBody] ProductFlowInstanceProcessModel<TData> input);
+        public abstract Task<ActionResult<ProcessResponse>> Process([FromBody] ProductFlowInstanceProcess<TData> input);
 
     }
 }
