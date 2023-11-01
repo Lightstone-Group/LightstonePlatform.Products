@@ -2,7 +2,7 @@
 
 Lightstone Platform Product is a library intended to support product developers to surface their products through and leverage the Lightstone platform.
 
-The Lightstone Platform comprises of a product flow that always follows the sames steps to surface a product through the product flow web component. This library serves as the basis for all products that are built and surfaced through the Lightstone Platform, and contains all needed models and end points to be able to successfully surface your product.
+The Lightstone Platform comprises of a product flow that always follows the same steps to surface a product through the product flow web component. This library serves as the basis for all products that are built and surfaced through the Lightstone Platform, and contains all needed models and end points to be able to successfully surface your product.
 # Product Implementation
 ## Product Flow Explained
 
