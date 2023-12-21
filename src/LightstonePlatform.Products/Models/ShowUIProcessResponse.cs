@@ -1,8 +1,10 @@
 ﻿using LightstonePlatform.Products.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace LightstonePlatform.Products.Models
 {
+    [Serializable]
     public class ShowUIProcessResponse : ProcessResponse
     {
         public override ResponseType Type { get => ResponseType.ShowUI; set => base.Type = value; }

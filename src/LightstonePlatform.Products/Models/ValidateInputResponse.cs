@@ -1,5 +1,8 @@
-﻿namespace LightstonePlatform.Products.Models
+﻿using System;
+
+namespace LightstonePlatform.Products.Models
 {
+    [Serializable]
     public class ValidateInputResponse
     {
         public bool Succesful { get; set; }

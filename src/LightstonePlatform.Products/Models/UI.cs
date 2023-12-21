@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace LightstonePlatform.Products.Models
 {
+    [Serializable]
     public class UI : UiBase
     {
 
