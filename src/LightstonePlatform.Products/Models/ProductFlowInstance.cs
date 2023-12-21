@@ -1,9 +1,9 @@
 ﻿using LightstonePlatform.Products.Enums;
-using System.Collections.Generic;
 using System;
 
 namespace LightstonePlatform.Products.Models
 {
+    [Serializable]
     public class ProductFlowInstance<T> : ProductFlowInstanceBase
     { 
         public string PartyId { get; set; }

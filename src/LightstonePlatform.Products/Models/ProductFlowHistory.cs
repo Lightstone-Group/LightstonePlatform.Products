@@ -4,6 +4,7 @@ using System;
 
 namespace LightstonePlatform.Products.Models
 {
+    [Serializable]
     public class ProductFlowHistory
     {
         [JsonProperty("id")]

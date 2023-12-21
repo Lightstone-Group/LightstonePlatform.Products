@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using System.Text.Json.Serialization;
+﻿using System;
 
 namespace LightstonePlatform.Products.Models
 {
+    [Serializable]
     public class ProductFlowInstanceBase
     {
         public string ProductFlowId { get; set; }

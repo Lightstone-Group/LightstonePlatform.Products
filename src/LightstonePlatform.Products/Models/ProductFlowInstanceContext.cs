@@ -1,5 +1,8 @@
-﻿namespace LightstonePlatform.Products.Models
+﻿using System;
+
+namespace LightstonePlatform.Products.Models
 {
+    [Serializable]
     public class ProductFlowInstanceContext
     {
         public string Context { get; set; }
