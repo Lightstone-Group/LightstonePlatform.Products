@@ -9,5 +9,6 @@ namespace LightstonePlatform.Products.Models
         public string SourceDataUrl { get; set; }
         public ProductFlowInstanceContext Context { get; set; } = new ProductFlowInstanceContext();
         public ProductFlowInstanceMetadata Metadata { get; set; } = new ProductFlowInstanceMetadata();
+        public string CustomizationHash { get; set; }
     }
 }
