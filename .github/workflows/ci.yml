@@ -37,7 +37,7 @@ jobs:
       - name: Pack
         run: dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{ env.GITVERSION_NUGETVERSION }} --no-build -c Release src/LightstonePlatform.Products/LightstonePlatform.Products.csproj -o ~/output/nuget
       - name: Publish Nuget Artifact
-        uses: actions/upload-artifact@v4.1.7
+        uses: actions/upload-artifact@v4
         with:
           name: nuget
           path: ~/output/nuget/
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Nuget artifact
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v4
         with:
           name: nuget
           path: ~/output/nuget/
