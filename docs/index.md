@@ -125,7 +125,7 @@ If you want the platform to display the custom error UI, return a `ShowUIHandleE
             Body = ""
         };
     }
-    ```
+```
 
 
 Please see the [samples project](https://github.com/Lightstone-Group/Product.Sample.AspDotNet) for implementation example
