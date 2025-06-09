@@ -22,6 +22,7 @@ Below you can see the essential parts of the implementation.
     {
         const string INPUT_ELEMENT_NAME = "hello-world-input";
         const string FINAL_ELEMENT_NAME = "hello-world";
+        const string ERROR_ELEMENT_NAME = "hello-world-error";
 
         public async override Task<ActionResult<StartResponse>> Start([FromBody] ProductFlowInstanceStartModel input)
         {
@@ -46,6 +47,17 @@ Below you can see the essential parts of the implementation.
             {
                 Attributes = { { "name", input.Input.Data.Name } },
                 ElementName = FINAL_ELEMENT_NAME
+            };
+        }
+
+        public async override Task<ActionResult<HandleErrorResponse>> HandleError([FromBody] ProductFlowInstanceHandleErrorModel errorInput)
+        {
+            return new ShowUIHandleErrorResponse
+            {
+                ElementName = ERROR_ELEMENT_NAME,
+                ElementUrl = ERROR_ELEMENT_URL,
+                Attributes = { { "error-status", errorInput.ProductFlowInstanceStatus }},
+                Body = ""
             };
         }
 

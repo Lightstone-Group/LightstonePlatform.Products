@@ -97,6 +97,37 @@ After successfully completing all steps , the platform will call the Process end
     }
 ```
 
+### Handle Error
+
+When an error occurs during the product flow process, the platform will call your product's HandleError end-point. This allows your product to either display a custom error UI or let the platform handle the error with its default error message.
+
+#### Samples
+
+If you want the platform to display its default error message, return a `ContinueHandleErrorResponse`:
+
+``` C#
+    public async override Task<ActionResult<HandleErrorResponse>> HandleError([FromBody] ProductFlowInstanceHandleErrorModel errorInput)
+    {
+        return new ContinueHandleErrorResponse();
+    }
+```
+
+If you want the platform to display the custom error UI, return a `ShowUIHandleErrorResponse`:
+
+``` C#
+    public async override Task<ActionResult<HandleErrorResponse>> HandleError([FromBody] ProductFlowInstanceHandleErrorModel errorInput)
+    {
+        return new ShowUIHandleErrorResponse
+        {
+            ElementName = ERROR_ELEMENT_NAME,
+            ElementUrl = ERROR_ELEMENT_URL,
+            Attributes = { { "error-status", errorInput.ProductFlowInstanceStatus }},
+            Body = ""
+        };
+    }
+    ```
+
+
 Please see the [samples project](https://github.com/Lightstone-Group/Product.Sample.AspDotNet) for implementation example
 
 ### Attributes and Body
