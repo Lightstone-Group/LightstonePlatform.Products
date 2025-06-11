@@ -66,7 +66,7 @@ Below you can see the essential parts of the implementation.
 
 ## Documentation
 
-See our detailed [documentation](https://github.com/Lightstone-Group/LightstonePlatform.Products/blob/main/docs/index.md) for more information
+See our detailed [documentation](https://apex.coaxle.co.za/docs/product-flow/product-implementation) for more information
 # Support
 
 
