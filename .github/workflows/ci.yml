@@ -46,8 +46,8 @@ jobs:
         run: |
           VERSION=${{ env.GITVERSION_NUGETVERSION }}
           
-          # Get the previous tag
-          PREVIOUS_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          # Get the previous tag (most recent tag before current HEAD)
+          PREVIOUS_TAG=$(git tag --sort=-version:refname | head -n 1)
           
           if [ -z "$PREVIOUS_TAG" ]; then
             echo "No previous tag found, generating notes from all commits"
@@ -67,12 +67,13 @@ jobs:
           echo "## Changes in this Release" >> /tmp/release_body.md
           echo "" >> /tmp/release_body.md
           
-          # Extract commits with their messages
-          git log $RANGE --pretty=format:"- %s (%h)" --no-merges >> /tmp/release_body.md
+          # Extract commits with their messages and save to temp file
+          git log $RANGE --pretty=format:"- %s (%h)" --no-merges > /tmp/commits.txt
           
-          # If no commits found, add a note
-          if [ ! -s /tmp/release_body.md ] || [ $(wc -l < /tmp/release_body.md) -lt 5 ]; then
-            echo "" >> /tmp/release_body.md
+          # Check if we have any commits
+          if [ -s /tmp/commits.txt ]; then
+            cat /tmp/commits.txt >> /tmp/release_body.md
+          else
             echo "_No significant changes in this release._" >> /tmp/release_body.md
           fi
           
