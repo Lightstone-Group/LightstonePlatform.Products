@@ -22,7 +22,7 @@ namespace LightstonePlatform.Products.Controllers
         public abstract Task<ActionResult<ProcessResponse>> Process([FromBody] ProductFlowInstanceProcess<TData> input);
         [HttpPost]
         [Route("handle/error")]
-        public abstract Task<ActionResult<HandleErrorResponse>> HandleError([FromBody] ProductFlowInstanceHandleErrorModel errorInput);
+        public abstract Task<ActionResult<HandleErrorResponse>> HandleError([FromBody] ProductFlowInstance errorInput);
 
     }
 }
