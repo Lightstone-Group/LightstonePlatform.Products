@@ -1,6 +1,5 @@
 ﻿using LightstonePlatform.Products.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LightstonePlatform.Products.Controllers
@@ -22,7 +21,7 @@ namespace LightstonePlatform.Products.Controllers
         public abstract Task<ActionResult<ProcessResponse>> Process([FromBody] ProductFlowInstanceProcess<TData> input);
         [HttpPost]
         [Route("handle/error")]
-        public abstract Task<ActionResult<HandleErrorResponse>> HandleError([FromBody] ProductFlowInstance errorInput);
+        public abstract Task<ActionResult<HandleErrorResponse>> HandleError([FromBody] ProductFlowInstance<TData> errorInput);
 
     }
 }
