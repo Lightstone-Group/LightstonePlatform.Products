@@ -5,7 +5,8 @@ namespace LightstonePlatform.Products.Models
 {
     public class ProductFlowInstanceErrorInputModel
     {
-        public Guid ProductFlowId { get; set; }
+        public string ProductFlowId { get; set; }
+        public string PartyId { get; set; }
         public ProductFlowInstanceStatus Status { get; set; }
     }
 }
