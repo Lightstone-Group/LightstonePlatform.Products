@@ -41,6 +41,54 @@ jobs:
         with:
           name: nuget
           path: ~/output/nuget/
+      - name: Generate Release Notes
+        id: generate_notes
+        run: |
+          VERSION=${{ env.GITVERSION_NUGETVERSION }}
+          
+          # Get the previous tag (most recent tag before current HEAD)
+          PREVIOUS_TAG=$(git tag --sort=-version:refname | head -n 1)
+          
+          if [ -z "$PREVIOUS_TAG" ]; then
+            echo "No previous tag found, generating notes from all commits"
+            RANGE="HEAD"
+          else
+            echo "Generating notes from ${PREVIOUS_TAG} to HEAD"
+            RANGE="${PREVIOUS_TAG}..HEAD"
+          fi
+          
+          # Start building release notes
+          cat > /tmp/release_body.md << 'HEADER'
+          # Release Notes
+          
+          HEADER
+          
+          # Get commit summary
+          echo "## Changes in this Release" >> /tmp/release_body.md
+          echo "" >> /tmp/release_body.md
+          
+          # Extract commits with their messages and save to temp file
+          git log $RANGE --pretty=format:"- %s (%h)" --no-merges > /tmp/commits.txt
+          
+          # Check if we have any commits
+          if [ -s /tmp/commits.txt ]; then
+            cat /tmp/commits.txt >> /tmp/release_body.md
+          else
+            echo "_No significant changes in this release._" >> /tmp/release_body.md
+          fi
+          
+          echo "" >> /tmp/release_body.md
+          echo "" >> /tmp/release_body.md
+          echo "## Installation" >> /tmp/release_body.md
+          echo "" >> /tmp/release_body.md
+          echo '```' >> /tmp/release_body.md
+          echo "dotnet add package LightstonePlatform.Products --version ${VERSION}" >> /tmp/release_body.md
+          echo '```' >> /tmp/release_body.md
+          
+          echo "body_file=/tmp/release_body.md" >> $GITHUB_OUTPUT
+          
+          echo "Generated release notes:"
+          cat /tmp/release_body.md
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -49,6 +97,7 @@ jobs:
         with:
           tag_name: ${{ env.GITVERSION_NUGETVERSION }}
           release_name: Release ${{ env.GITVERSION_NUGETVERSION }}
+          body_path: ${{ steps.generate_notes.outputs.body_file }}
           draft: false
           prerelease: false
   publish:
@@ -72,4 +121,4 @@ jobs:
           user: ${{ secrets.NUGET_USER }}
       - name: Push nuget package
         run: dotnet nuget push ~/output/nuget/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
-    
+
