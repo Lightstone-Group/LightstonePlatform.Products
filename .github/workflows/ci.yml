@@ -41,41 +41,53 @@ jobs:
         with:
           name: nuget
           path: ~/output/nuget/
-      - name: Check for release notes
-        id: check_release_notes
+      - name: Generate Release Notes
+        id: generate_notes
         run: |
           VERSION=${{ env.GITVERSION_NUGETVERSION }}
-          RELEASE_NOTES_FILE="release-notes/v${VERSION}.mdx"
-          if [ -f "$RELEASE_NOTES_FILE" ]; then
-            echo "Release notes found for version ${VERSION}"
-            echo "notes_exist=true" >> $GITHUB_OUTPUT
-            echo "notes_file=${RELEASE_NOTES_FILE}" >> $GITHUB_OUTPUT
+          
+          # Get the previous tag
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          
+          if [ -z "$PREVIOUS_TAG" ]; then
+            echo "No previous tag found, generating notes from all commits"
+            RANGE="HEAD"
           else
-            echo "No release notes found for version ${VERSION}"
-            echo "notes_exist=false" >> $GITHUB_OUTPUT
-            echo "notes_file=" >> $GITHUB_OUTPUT
+            echo "Generating notes from ${PREVIOUS_TAG} to HEAD"
+            RANGE="${PREVIOUS_TAG}..HEAD"
           fi
-      - name: Extract release notes body
-        id: extract_notes
-        run: |
-          if [ "${{ steps.check_release_notes.outputs.notes_exist }}" == "true" ]; then
-            NOTES_FILE="${{ steps.check_release_notes.outputs.notes_file }}"
-
-            # Extract content after frontmatter (between --- markers)
-            # Skip the frontmatter and get the actual content
-            BODY=$(awk '/^---$/{if(++count==2){flag=1;next}}flag' "$NOTES_FILE")
-
-            # If no content found, use default message
-            if [ -z "$BODY" ]; then
-              BODY="Release notes are available in the [release-notes directory](https://github.com/${{ github.repository }}/blob/main/${NOTES_FILE})."
-            fi
-          else
-            BODY="Release ${{ env.GITVERSION_NUGETVERSION }}\n\nNo release notes available for this version."
+          
+          # Start building release notes
+          cat > /tmp/release_body.md << 'HEADER'
+          # Release Notes
+          
+          HEADER
+          
+          # Get commit summary
+          echo "## Changes in this Release" >> /tmp/release_body.md
+          echo "" >> /tmp/release_body.md
+          
+          # Extract commits with their messages
+          git log $RANGE --pretty=format:"- %s (%h)" --no-merges >> /tmp/release_body.md
+          
+          # If no commits found, add a note
+          if [ ! -s /tmp/release_body.md ] || [ $(wc -l < /tmp/release_body.md) -lt 5 ]; then
+            echo "" >> /tmp/release_body.md
+            echo "_No significant changes in this release._" >> /tmp/release_body.md
           fi
-
-          # Save to file to handle multiline content
-          echo "$BODY" > /tmp/release_body.md
+          
+          echo "" >> /tmp/release_body.md
+          echo "" >> /tmp/release_body.md
+          echo "## Installation" >> /tmp/release_body.md
+          echo "" >> /tmp/release_body.md
+          echo '```' >> /tmp/release_body.md
+          echo "dotnet add package LightstonePlatform.Products --version ${VERSION}" >> /tmp/release_body.md
+          echo '```' >> /tmp/release_body.md
+          
           echo "body_file=/tmp/release_body.md" >> $GITHUB_OUTPUT
+          
+          echo "Generated release notes:"
+          cat /tmp/release_body.md
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -84,7 +96,7 @@ jobs:
         with:
           tag_name: ${{ env.GITVERSION_NUGETVERSION }}
           release_name: Release ${{ env.GITVERSION_NUGETVERSION }}
-          body_path: ${{ steps.extract_notes.outputs.body_file }}
+          body_path: ${{ steps.generate_notes.outputs.body_file }}
           draft: false
           prerelease: false
   publish:
